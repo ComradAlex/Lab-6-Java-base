@@ -1,5 +1,6 @@
 package ru.billing.warehouse;
 
+import ru.billing.exceptions.ItemAlreadyExistsException;
 import ru.billing.stockList.GenericItem;
 
 import java.util.ArrayList;
@@ -24,6 +25,11 @@ public class ItemCatalog {
     public void setArrListCatalog(ArrayList<GenericItem> arrListCatalog) {
         this.arrListCatalog = arrListCatalog;
     }
+    
+     public void addItem(GenericItem item) throws ItemAlreadyExistsException {
+        if (catalog.get(item.getId()) != null) {
+            throw new ItemAlreadyExistsException();
+        }
 
     public void addItem(GenericItem item) {
         catalog.put(item.getId(), item);
